@@ -5,10 +5,6 @@ import org.example.algorithm.PermutationChecker;
 import org.example.algorithm.ProgramException;
 import org.example.algorithm.QuickChecker;
 
-import java.io.*;
-
-// README with algorithm analysis
-// Add tests
 
 public class Main {
 
@@ -46,10 +42,6 @@ public class Main {
 
         Type(int number) {
             this.number = number;
-        }
-
-        int getNumber() {
-            return number;
         }
     }
 }
