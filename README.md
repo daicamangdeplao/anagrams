@@ -40,13 +40,47 @@ java -jar anagrams-1.0-SNAPSHOT.jar 2 "New York Times" "monkeys write"
 
 ## Solution
 
-* two possible solutions
-  * recursive solution: Adopt permutation approach by listing all possible permutation of a string (including the space character).
-  * stream solution: Two anagrams must have the same characters.
+* Two possible solutions:
+  * Recursive solution
+    * Adopt permutation approach by listing all possible permutation of a string (including the space character).
+    * Try to list all of possible permutations of the text.
+    * If the list contains the anagram then they are anagrams.
+  * Stream solution
+    * Based on the facts:
+      * Two anagrams must have the same number of words.
+      * Two anagrams must have the same characters, just maybe in different orders.
+    * Standardise the text by:
+      * Get rid of space characters.
+      * All characters must be lowered case.
+      * Characters must be sorted in a consistent order.
+    * Two words are anagrams, if two standardised texts are equal.
 
 ## Algorithm Analysis
 
-n/a
+The interesting time complexity happens when we adopt the recursive solution by listing all of possible permutation of the text.
+
+````
+    private void check(String prefix, String str) {
+        int n = str.length();
+        if (n == 0) {
+            System.out.println(prefix);
+        }
+
+        for (int i = 0; i < n; i++) {
+            check(
+                    prefix + str.charAt(i),
+                    str.substring(0, i) + str.substring(i + 1, n)
+            );
+        }
+    }
+
+````
+
+* At the first look, the loop takes ``n`` times to finish.
+* Inside the loop, the recursive takes place with a string size is decreased by ``1``, i.e. ``n - 1``.
+* The recursive get deeper until the size of the text is ``0``.
+
+By using these three observations, the recursive algorithm takes ``n!`` steps to finish the run. Therefore, the worst case of time complexity is ``O(n!)``, or ``O(n^n)``. 
 
 ## References
 
