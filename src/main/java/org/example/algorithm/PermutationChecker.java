@@ -1,11 +1,17 @@
 package org.example.algorithm;
 
+import org.example.Utils;
+
 public class PermutationChecker implements AnagramChecker {
     private boolean found = false;
 
     @Override
     public boolean isAnagrams(String source, String target) {
-        check("", source.replace(" ", ""), target.replace(" ", ""));
+        check(
+                "",
+                Utils.removeSpaceCharacters(source),
+                Utils.removeSpaceCharacters(target)
+        );
         return found;
     }
 
